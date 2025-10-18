@@ -33,7 +33,7 @@ pub type UserDataInner<'gc> = AnyInner<UserDataMetaState<'gc>>;
 ///
 /// There is no automatic mechanism to provide internal mutability on the held value. If the held
 /// value needs to be internally mutable and is `'static`, consider normal mechanisms for Rust
-/// internal mutability like [`std::cell::RefCell`]. If the type is a GC type and needs to be
+/// internal mutability like [`core::cell::RefCell`]. If the type is a GC type and needs to be
 /// internally mutable, use the mechanisms in `gc-arena` for this like [`gc_arena::lock::RefLock`]
 /// instead.
 ///

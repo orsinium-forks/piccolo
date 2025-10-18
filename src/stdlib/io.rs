@@ -5,7 +5,7 @@ use crate::{
 };
 use core::pin::Pin;
 use gc_arena::Collect;
-use std::io::{self, Write};
+use std::io::{stdout, Write};
 
 pub fn load_io<'gc>(ctx: Context<'gc>) {
     ctx.set_global(
@@ -24,7 +24,7 @@ pub fn load_io<'gc>(ctx: Context<'gc>) {
                     _exec: Execution<'gc, '_>,
                     mut stack: Stack<'gc, '_>,
                 ) -> Result<SequencePoll<'gc>, Error<'gc>> {
-                    let mut stdout = io::stdout();
+                    let mut stdout = stdout();
 
                     while let Some(value) = stack.pop_back() {
                         match meta_ops::tostring(ctx, value)? {
