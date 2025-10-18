@@ -1,15 +1,10 @@
-use std::{
-    hash::{Hash, Hasher},
-    mem,
-};
-
-use gc_arena::{arena::Root, barrier, lock, Collect, Gc, Mutation, Rootable, Static};
+use crate::any::{Any, AnyInner};
+use crate::Table;
+use gc_arena::arena::Root;
+use gc_arena::{barrier, lock, Collect, Gc, Mutation, Rootable, Static};
+use std::hash::{Hash, Hasher};
+use std::mem;
 use thiserror::Error;
-
-use crate::{
-    any::{Any, AnyInner},
-    Table,
-};
 
 #[derive(Debug, Copy, Clone, Error)]
 #[error("UserData type mismatch")]

@@ -1,13 +1,10 @@
-use std::{
-    fmt,
-    hash::{Hash, Hasher},
-    pin::Pin,
-};
-
-use allocator_api2::boxed;
-use gc_arena::{allocator_api::MetricsAlloc, Collect, Gc, Mutation};
-
 use crate::{Context, Error, Execution, Function, Stack, Thread};
+use allocator_api2::boxed;
+use gc_arena::allocator_api::MetricsAlloc;
+use gc_arena::{Collect, Gc, Mutation};
+use std::fmt;
+use std::hash::{Hash, Hasher};
+use std::pin::Pin;
 
 /// Describes the next action for an [`Executor`](crate::Executor) to take after a callback has
 /// returned.

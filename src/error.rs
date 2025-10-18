@@ -1,12 +1,13 @@
-use std::{error::Error as StdError, fmt, string::String as StdString, sync::Arc};
-
-use gc_arena::{Collect, Gc, Rootable};
-use thiserror::Error;
-
 use crate::{
     Callback, CallbackReturn, Context, FromValue, Function, IntoValue, MetaMethod, Singleton,
     Table, UserData, Value,
 };
+use gc_arena::{Collect, Gc, Rootable};
+use std::error::Error as StdError;
+use std::fmt;
+use std::string::String as StdString;
+use std::sync::Arc;
+use thiserror::Error;
 
 #[derive(Debug, Clone, Copy, Error)]
 #[error("type error, expected {expected}, found {found}")]

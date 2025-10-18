@@ -1,7 +1,5 @@
-use std::{
-    fmt::{self, Write as _},
-    str,
-};
+use std::fmt::{self, Write as _};
+use std::str;
 
 pub fn trim_whitespace(mut s: &[u8]) -> &[u8] {
     s = &s[s.iter().position(|&c| !is_space(c)).unwrap_or(s.len())..];

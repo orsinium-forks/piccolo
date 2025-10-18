@@ -1,13 +1,12 @@
-use std::io::Write;
-
-use gc_arena::Collect;
-use thiserror::Error;
-
 use crate::async_callback::{AsyncSequence, Locals};
-use crate::{async_sequence, SequenceReturn, Stack};
+use crate::table::InvalidTableKey;
 use crate::{
-    table::InvalidTableKey, Callback, CallbackReturn, Context, Function, IntoValue, Table, Value,
+    async_sequence, Callback, CallbackReturn, Context, Function, IntoValue, SequenceReturn, Stack,
+    Table, Value,
 };
+use gc_arena::Collect;
+use std::io::Write;
+use thiserror::Error;
 
 /// An enum of every possible Lua metamethod.
 ///

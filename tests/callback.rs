@@ -1,10 +1,9 @@
-use std::pin::Pin;
-
 use gc_arena::Collect;
 use piccolo::{
     BoxSequence, Callback, CallbackReturn, Closure, Context, Error, Execution, Executor,
     ExternError, Function, IntoValue, Lua, Sequence, SequencePoll, Stack, String, Thread, Value,
 };
+use std::pin::Pin;
 
 #[test]
 fn callback() -> Result<(), ExternError> {
