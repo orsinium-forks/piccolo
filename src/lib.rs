@@ -1,3 +1,4 @@
+#![cfg_attr(not(any(feature = "std", test)), no_std)]
 extern crate alloc;
 
 pub mod any;
@@ -11,6 +12,7 @@ pub mod error;
 pub mod finalizers;
 pub mod fuel;
 pub mod function;
+#[cfg(feature = "std")]
 pub mod io;
 pub mod lua;
 pub mod meta_ops;

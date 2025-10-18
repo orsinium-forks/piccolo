@@ -21,11 +21,10 @@ use crate::types::{
     UpValueIndex, VarCount,
 };
 use crate::Constant;
-use ahash::HashMap;
 use alloc::collections::VecDeque;
 use core::{fmt, iter, mem};
 use gc_arena::Collect;
-use std::collections::hash_map;
+use hashbrown::HashMap;
 use thiserror::Error;
 
 #[derive(Debug, Copy, Clone, Error)]
@@ -1583,13 +1582,14 @@ impl<S: StringInterner> Compiler<S> {
         &mut self,
         constant: Constant<S::String>,
     ) -> Result<ConstantIndex16, CompileErrorKind> {
+        use hashbrown::hash_map::Entry;
         match self
             .current_function
             .constant_table
             .entry(IdenticalConstant(constant.clone()))
         {
-            hash_map::Entry::Occupied(occupied) => Ok(*occupied.get()),
-            hash_map::Entry::Vacant(vacant) => {
+            Entry::Occupied(occupied) => Ok(*occupied.get()),
+            Entry::Vacant(vacant) => {
                 let c = ConstantIndex16(
                     (self.current_function.constants.len())
                         .try_into()
