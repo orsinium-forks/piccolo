@@ -6,8 +6,8 @@ use crate::compiler::string_utils::{
     from_digit, from_hex_digit, is_hex_digit, is_space, read_dec_float, read_dec_integer,
     read_hex_float, read_hex_integer, ALERT_BEEP, BACKSPACE,
 };
+use core::{char, fmt};
 use gc_arena::Collect;
-use std::{char, fmt};
 use thiserror::Error;
 
 #[derive(Clone)]
@@ -919,7 +919,7 @@ fn get_reserved_word_token<S>(word: &[u8]) -> Option<Token<S>> {
 mod tests {
     use super::*;
     use crate::compiler::interning::BasicInterner;
-    use std::rc::Rc;
+    use alloc::rc::Rc;
 
     fn test_tokens(source: &str, tokens: &[Token<Rc<[u8]>>]) {
         let mut lexer = Lexer::new(source.as_bytes(), BasicInterner::default());

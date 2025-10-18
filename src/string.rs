@@ -1,5 +1,8 @@
 use crate::compiler::string_utils::{debug_utf8_lossy, display_utf8_lossy};
 use ahash::AHasher;
+use core::hash::{BuildHasherDefault, Hash, Hasher};
+use core::str::{self, Utf8Error};
+use core::{alloc, fmt, ops, slice};
 use gc_arena::allocator_api::MetricsAlloc;
 use gc_arena::barrier::Unlock;
 use gc_arena::lock::RefLock;
@@ -7,9 +10,6 @@ use gc_arena::metrics::Metrics;
 use gc_arena::{Collect, Collection, Gc, GcWeak, Mutation, Static};
 use hashbrown::raw::RawTable;
 use hashbrown::{hash_map, HashMap};
-use std::hash::{BuildHasherDefault, Hash, Hasher};
-use std::str::{self, Utf8Error};
-use std::{alloc, fmt, ops, slice};
 
 /// The Lua string type.
 ///

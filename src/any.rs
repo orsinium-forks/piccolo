@@ -1,9 +1,9 @@
+use core::any::TypeId;
+use core::fmt;
+use core::hash::{Hash, Hasher};
 use gc_arena::arena::Root;
 use gc_arena::barrier::{self, Write};
 use gc_arena::{Collect, Gc, Mutation, Rootable};
-use std::any::TypeId;
-use std::fmt;
-use std::hash::{Hash, Hasher};
 
 /// A `Gc` pointer to any type `T: Collect + 'gc` which allows safe downcasting.
 ///

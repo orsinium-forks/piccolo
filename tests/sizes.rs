@@ -1,6 +1,6 @@
+use core::mem;
 use piccolo::opcode::OpCode;
 use piccolo::{Callback, Closure, String, Table, Thread, UserData, Value};
-use std::mem;
 
 #[test]
 fn test_sizes() {

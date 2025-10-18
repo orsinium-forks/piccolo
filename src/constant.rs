@@ -1,6 +1,6 @@
 use crate::compiler::string_utils::{read_float, read_integer, trim_whitespace};
+use core::hash::{Hash, Hasher};
 use gc_arena::Collect;
-use std::hash::{Hash, Hasher};
 
 #[derive(Debug, Copy, Clone, Collect)]
 #[collect(no_drop)]

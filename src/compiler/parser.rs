@@ -1,7 +1,7 @@
 use super::lexer::{LexError, Lexer, LineNumber, Token};
 use super::StringInterner;
-use std::rc::Rc;
-use std::{fmt, ops};
+use alloc::rc::Rc;
+use core::{fmt, ops};
 use thiserror::Error;
 
 #[derive(Debug, Clone)]

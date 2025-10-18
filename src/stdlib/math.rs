@@ -288,10 +288,10 @@ pub fn load_trig<'gc>(ctx: Context<'gc>, math: Table<'gc>) {
 }
 
 pub fn load_random<'gc>(ctx: Context<'gc>, math: Table<'gc>) {
+    use alloc::rc::Rc;
+    use core::cell::RefCell;
     use rand::rngs::SmallRng;
     use rand::{Rng, SeedableRng};
-    use std::cell::RefCell;
-    use std::rc::Rc;
 
     let seeded_rng = Rc::new(RefCell::new(SmallRng::from_entropy()));
 

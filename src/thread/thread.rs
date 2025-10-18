@@ -7,11 +7,11 @@ use crate::{
     IntoMultiValue, String, Table, UserData, Value,
 };
 use allocator_api2::vec;
+use core::cell::RefMut;
+use core::hash::{Hash, Hasher};
 use gc_arena::allocator_api::MetricsAlloc;
 use gc_arena::lock::RefLock;
 use gc_arena::{Collect, Finalization, Gc, GcWeak, Mutation};
-use std::cell::RefMut;
-use std::hash::{Hash, Hasher};
 use thiserror::Error;
 
 /// The current state of a [`Thread`].

@@ -3,9 +3,9 @@ use crate::{
     BoxSequence, Callback, CallbackReturn, Context, Error, Execution, Sequence, SequencePoll,
     Stack, Value,
 };
+use core::pin::Pin;
 use gc_arena::Collect;
 use std::io::{self, Write};
-use std::pin::Pin;
 
 pub fn load_io<'gc>(ctx: Context<'gc>) {
     ctx.set_global(

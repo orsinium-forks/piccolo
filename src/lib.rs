@@ -1,3 +1,5 @@
+extern crate alloc;
+
 pub mod any;
 pub mod async_callback;
 pub mod callback;

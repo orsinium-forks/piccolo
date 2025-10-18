@@ -22,9 +22,10 @@ use crate::types::{
 };
 use crate::Constant;
 use ahash::HashMap;
+use alloc::collections::VecDeque;
+use core::{fmt, iter, mem};
 use gc_arena::Collect;
-use std::collections::{hash_map, VecDeque};
-use std::{fmt, iter, mem};
+use std::collections::hash_map;
 use thiserror::Error;
 
 #[derive(Debug, Copy, Clone, Error)]

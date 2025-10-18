@@ -1,9 +1,9 @@
 use super::raw::{InvalidTableKey, NextValue, RawTable};
 use crate::{Context, FromValue, IntoValue, TypeError, Value};
+use core::hash::{Hash, Hasher};
+use core::{fmt, i64, mem};
 use gc_arena::lock::RefLock;
 use gc_arena::{Collect, Gc, Mutation};
-use std::hash::{Hash, Hasher};
-use std::{fmt, i64, mem};
 
 pub type TableInner<'gc> = RefLock<TableState<'gc>>;
 

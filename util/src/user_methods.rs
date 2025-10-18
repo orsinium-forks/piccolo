@@ -1,10 +1,10 @@
+use core::marker::PhantomData;
 use gc_arena::arena::Root;
 use gc_arena::{barrier, Collect, Rootable, Static};
 use piccolo::{
     Callback, CallbackReturn, Context, Error, Execution, FromMultiValue, IntoMultiValue,
     MetaMethod, Table, UserData,
 };
-use std::marker::PhantomData;
 
 /// An easy way to wrap a value in [`UserData`] and let Lua call methods on it.
 ///

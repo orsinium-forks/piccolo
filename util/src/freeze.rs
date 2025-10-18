@@ -1,7 +1,7 @@
-use std::cell::RefCell;
-use std::marker::PhantomData;
-use std::mem;
-use std::rc::Rc;
+use alloc::rc::Rc;
+use core::cell::RefCell;
+use core::marker::PhantomData;
+use core::mem;
 use thiserror::Error;
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq, Error)]

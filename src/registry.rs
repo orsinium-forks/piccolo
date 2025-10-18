@@ -2,13 +2,13 @@ use crate::any::Any;
 use crate::stash::{Fetchable, Stashable};
 use crate::Context;
 use ahash::AHasher;
+use core::any::TypeId;
+use core::hash::BuildHasherDefault;
 use gc_arena::allocator_api::MetricsAlloc;
 use gc_arena::arena::Root;
 use gc_arena::lock::RefLock;
 use gc_arena::{Collect, DynamicRootSet, Gc, Mutation, Rootable};
 use hashbrown::{hash_map, HashMap};
-use std::any::TypeId;
-use std::hash::BuildHasherDefault;
 
 /// A type which can have a single registered value per [`Lua`](crate::Lua) instance.
 ///

@@ -4,10 +4,10 @@ use crate::thread::OpenUpValue;
 use crate::types::UpValueDescriptor;
 use crate::{Constant, Context, String, Table, Value};
 use allocator_api2::{boxed, vec, SliceExt};
+use core::hash::{Hash, Hasher};
 use gc_arena::allocator_api::MetricsAlloc;
 use gc_arena::lock::Lock;
 use gc_arena::{Collect, Gc, Mutation};
-use std::hash::{Hash, Hasher};
 use thiserror::Error;
 
 // Note: These errors must not have #[error(transparent)] so that

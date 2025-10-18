@@ -1,9 +1,9 @@
 use crate::any::{Any, AnyInner};
 use crate::Table;
+use core::hash::{Hash, Hasher};
+use core::mem;
 use gc_arena::arena::Root;
 use gc_arena::{barrier, lock, Collect, Gc, Mutation, Rootable, Static};
-use std::hash::{Hash, Hasher};
-use std::mem;
 use thiserror::Error;
 
 #[derive(Debug, Copy, Clone, Error)]

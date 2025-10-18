@@ -2,11 +2,11 @@ use crate::{
     Callback, CallbackReturn, Context, FromValue, Function, IntoValue, MetaMethod, Singleton,
     Table, UserData, Value,
 };
+use alloc::string::String as StdString;
+use alloc::sync::Arc;
+use core::error::Error as StdError;
+use core::fmt;
 use gc_arena::{Collect, Gc, Rootable};
-use std::error::Error as StdError;
-use std::fmt;
-use std::string::String as StdString;
-use std::sync::Arc;
 use thiserror::Error;
 
 #[derive(Debug, Clone, Copy, Error)]

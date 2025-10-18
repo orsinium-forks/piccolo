@@ -7,10 +7,10 @@ use crate::{
     Error, ExternError, FromMultiValue, FromValue, Fuel, IntoValue, Registry, RuntimeError,
     Singleton, StashedExecutor, String, Table, TypeError, Value,
 };
+use core::ops;
 use gc_arena::arena::{CollectionPhase, Root};
 use gc_arena::metrics::Metrics;
 use gc_arena::{Arena, Collect, Mutation, Rootable};
-use std::ops;
 
 /// A value representing the main "execution context" of a Lua state.
 ///

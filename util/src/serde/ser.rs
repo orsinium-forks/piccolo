@@ -1,7 +1,7 @@
 use super::markers::{none, unit};
+use core::fmt;
 use piccolo::{Context, Table, Value};
 use serde::ser;
-use std::fmt;
 use thiserror::Error;
 
 #[derive(Debug, Error)]

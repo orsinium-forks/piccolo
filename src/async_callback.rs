@@ -3,14 +3,14 @@ use crate::{
     BoxSequence, Context, Error, Execution, Function, Sequence, SequencePoll, Stack, StashedError,
     StashedFunction, StashedThread, Thread,
 };
+use alloc::rc::Rc;
+use core::cell::Cell;
+use core::future::{poll_fn, Future};
+use core::marker::PhantomData;
+use core::pin::Pin;
+use core::task::{self, Poll, RawWaker, RawWakerVTable, Waker};
+use core::{mem, ptr};
 use gc_arena::{Collect, DynamicRootSet, Mutation};
-use std::cell::Cell;
-use std::future::{poll_fn, Future};
-use std::marker::PhantomData;
-use std::pin::Pin;
-use std::rc::Rc;
-use std::task::{self, Poll, RawWaker, RawWakerVTable, Waker};
-use std::{mem, ptr};
 
 /// Create a [`Sequence`] impl from a [`Future`] that can suspend, call Lua functions, yield to Lua,
 /// and resume threads as async method calls via a held [`AsyncSequence`] proxy.

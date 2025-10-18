@@ -7,10 +7,10 @@ use crate::{
     Stack, String, Thread, ThreadMode, Variadic,
 };
 use allocator_api2::vec;
+use core::hash::{Hash, Hasher};
 use gc_arena::allocator_api::MetricsAlloc;
 use gc_arena::lock::RefLock;
 use gc_arena::{Collect, Gc, Mutation};
-use std::hash::{Hash, Hasher};
 use thiserror::Error;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

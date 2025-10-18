@@ -1,10 +1,10 @@
 use crate::{Callback, Closure, Function, String, Table, Thread, UserData, Value};
 use allocator_api2::vec;
+use core::hash::Hash;
+use core::{fmt, i64, mem};
 use gc_arena::allocator_api::MetricsAlloc;
 use gc_arena::{Collect, Gc, Mutation};
 use hashbrown::{hash_map, HashMap};
-use std::hash::Hash;
-use std::{fmt, i64, mem};
 use thiserror::Error;
 
 #[derive(Debug, Copy, Clone, Error)]

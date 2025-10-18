@@ -8,8 +8,8 @@ use crate::{
     Callback, Closure, Error, Executor, Function, RuntimeError, String, Table, Thread, UserData,
     Value,
 };
+use core::fmt;
 use gc_arena::{DynamicRoot, DynamicRootSet, Mutation, Rootable};
-use std::fmt;
 
 /// A trait for types that can be stashed into a [`DynamicRootSet`].
 ///

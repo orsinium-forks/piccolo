@@ -1,6 +1,6 @@
 use crate::{Callback, Closure, Constant, Function, String, Table, Thread, UserData};
+use core::{f64, fmt, i64};
 use gc_arena::{Collect, Gc};
-use std::{f64, fmt, i64};
 
 /// The single data type for all Lua variables.
 ///

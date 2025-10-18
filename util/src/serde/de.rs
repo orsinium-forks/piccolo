@@ -1,8 +1,8 @@
 use super::markers::{is_none, is_unit};
+use core::fmt;
 use piccolo::table::NextValue;
 use piccolo::{Table, Value};
 use serde::de;
-use std::fmt;
 use thiserror::Error;
 
 #[derive(Debug, Error)]

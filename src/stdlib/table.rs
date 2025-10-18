@@ -8,9 +8,9 @@ use crate::{
     StashedFunction, StashedTable, StashedValue, Table, Value,
 };
 use anyhow::Context as _;
+use core::mem;
+use core::pin::Pin;
 use gc_arena::Collect;
-use std::mem;
-use std::pin::Pin;
 
 pub fn load_table<'gc>(ctx: Context<'gc>) {
     let table = Table::new(&ctx);

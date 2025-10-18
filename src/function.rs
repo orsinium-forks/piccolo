@@ -2,8 +2,8 @@ use crate::{
     BoxSequence, Callback, CallbackReturn, Closure, Context, Error, Execution, IntoMultiValue,
     Sequence, SequencePoll, Stack,
 };
+use core::pin::Pin;
 use gc_arena::{Collect, Gc, Mutation};
-use std::pin::Pin;
 
 /// Any callable Lua value (either a [`Closure`] or a [`Callback`]).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Collect)]

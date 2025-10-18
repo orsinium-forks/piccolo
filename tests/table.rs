@@ -1,5 +1,5 @@
+use core::cmp::Ordering;
 use piccolo::{Lua, Table, Value};
-use std::cmp::Ordering;
 
 #[test]
 fn test_table_iter() {

@@ -4,8 +4,8 @@ use crate::{
     BoxSequence, Callback, CallbackReturn, Context, Error, Execution, IntoValue, MetaMethod,
     Sequence, SequencePoll, Stack, String, Table, TypeError, Value, Variadic,
 };
+use core::pin::Pin;
 use gc_arena::Collect;
-use std::pin::Pin;
 
 pub fn load_base<'gc>(ctx: Context<'gc>) {
     ctx.set_global(
