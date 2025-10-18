@@ -802,18 +802,18 @@ pub fn concat_many<'gc>(
 ) -> Result<ConcatMetaResult<'gc>, MetaOperatorError> {
     // Fast path scope; never loops, returns if successful, otherwise
     // breaks to fall back to the slow impl.
-    loop {
+    'fast: {
         // Since we have to make two passes to check for complex types,
         // estimate the length in the first pass.
         let Some(len) = estimate_concatenated_len(values)? else {
-            break;
+            break 'fast;
         };
 
         let mut bytes = Vec::with_capacity(len);
         for value in values {
             match value {
-                Value::Integer(i) => write!(&mut bytes, "{}", i).unwrap(),
-                Value::Number(n) => write!(&mut bytes, "{}", n).unwrap(),
+                Value::Integer(i) => write!(&mut bytes, "{i}").unwrap(),
+                Value::Number(n) => write!(&mut bytes, "{n}").unwrap(),
                 Value::String(s) => bytes.extend(s.as_bytes()),
                 _ => unreachable!(),
             }
@@ -852,16 +852,16 @@ pub fn concat_separated<'gc>(
 
     // Fast path scope; never loops, returns if successful, otherwise
     // breaks to fall back to the slow impl.
-    loop {
+    'fast: {
         let sep_str = match separator.into_string(ctx) {
             Some(s) => s,
-            None => break,
+            None => break 'fast,
         };
 
         // Since we have to make two passes to check for complex types,
         // estimate the length in the first pass.
         let Some(len) = estimate_concatenated_len(values)? else {
-            break;
+            break 'fast;
         };
 
         let sep_count = values.len().saturating_sub(1);
