@@ -1,3 +1,4 @@
+use alloc::boxed::Box;
 use alloc::rc::Rc;
 use hashbrown::HashSet;
 

@@ -1,8 +1,10 @@
 use crate::compiler::string_utils::{debug_utf8_lossy, display_utf8_lossy};
 use ahash::AHasher;
+use alloc::boxed::Box;
+use core::alloc::Layout;
 use core::hash::{BuildHasherDefault, Hash, Hasher};
 use core::str::{self, Utf8Error};
-use core::{alloc, fmt, ops, slice};
+use core::{fmt, ops, slice};
 use gc_arena::allocator_api::MetricsAlloc;
 use gc_arena::barrier::Unlock;
 use gc_arena::lock::RefLock;
@@ -142,10 +144,8 @@ impl<'gc> String<'gc> {
             match self.0.buffer {
                 Buffer::Indirect(p) => &(*p),
                 Buffer::Inline(len) => {
-                    let layout = alloc::Layout::new::<StringInner>();
-                    let (_, offset) = layout
-                        .extend(alloc::Layout::array::<u8>(len).unwrap())
-                        .unwrap();
+                    let layout = Layout::new::<StringInner>();
+                    let (_, offset) = layout.extend(Layout::array::<u8>(len).unwrap()).unwrap();
                     let data =
                         (Gc::as_ptr(self.0) as *const u8).offset(offset as isize) as *const u8;
                     slice::from_raw_parts(data, len)

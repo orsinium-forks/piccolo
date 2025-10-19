@@ -1,5 +1,6 @@
 use super::lexer::{LexError, Lexer, LineNumber, Token};
 use super::StringInterner;
+use alloc::boxed::Box;
 use alloc::rc::Rc;
 use alloc::vec::Vec;
 use core::{fmt, ops};

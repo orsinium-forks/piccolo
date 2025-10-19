@@ -21,6 +21,7 @@ use crate::types::{
     UpValueIndex, VarCount,
 };
 use crate::Constant;
+use alloc::boxed::Box;
 use alloc::collections::VecDeque;
 use alloc::vec::Vec;
 use core::{fmt, iter, mem};
