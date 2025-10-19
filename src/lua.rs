@@ -153,6 +153,7 @@ impl Lua {
     /// Create a new `Lua` instance with all of the stdlib loaded.
     pub fn full() -> Self {
         let mut lua = Lua::core();
+        #[cfg(feature = "std")]
         lua.load_io();
         lua
     }
@@ -176,6 +177,7 @@ impl Lua {
     }
 
     /// Load the parts of the stdlib that allow I/O.
+    #[cfg(feature = "std")]
     pub fn load_io(&mut self) {
         self.enter(|ctx| {
             load_io(ctx);
