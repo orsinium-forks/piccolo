@@ -2,6 +2,7 @@ use crate::{
     Callback, Closure, Context, Function, String, Table, Thread, TypeError, UserData, Value,
 };
 use alloc::string::String as StdString;
+use alloc::vec::Vec;
 use core::{array, iter, ops};
 
 pub trait IntoValue<'gc> {

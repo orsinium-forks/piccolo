@@ -6,6 +6,7 @@ use crate::compiler::string_utils::{
     from_digit, from_hex_digit, is_hex_digit, is_space, read_dec_float, read_dec_integer,
     read_hex_float, read_hex_integer, ALERT_BEEP, BACKSPACE,
 };
+use alloc::vec::Vec;
 use core::{char, fmt};
 use gc_arena::Collect;
 use thiserror::Error;

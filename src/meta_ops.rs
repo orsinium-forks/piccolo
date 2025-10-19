@@ -4,6 +4,7 @@ use crate::{
     async_sequence, Callback, CallbackReturn, Context, Function, IntoValue, SequenceReturn, Stack,
     Table, Value,
 };
+use alloc::vec::Vec;
 use gc_arena::Collect;
 use thiserror::Error;
 

@@ -53,6 +53,7 @@ pub fn buffered_read<R: Read>(r: R) -> Result<BufReader<R>, Error> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use alloc::vec::Vec;
 
     #[test]
     fn test_skip_prefix() {

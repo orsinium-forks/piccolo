@@ -22,6 +22,7 @@ use crate::types::{
 };
 use crate::Constant;
 use alloc::collections::VecDeque;
+use alloc::vec::Vec;
 use core::{fmt, iter, mem};
 use gc_arena::Collect;
 use hashbrown::HashMap;

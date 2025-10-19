@@ -1,5 +1,6 @@
 use crate::thread::ThreadInner;
 use crate::Thread;
+use alloc::vec::Vec;
 use gc_arena::lock::RefLock;
 use gc_arena::{Collect, Finalization, Gc, GcWeak, Mutation};
 

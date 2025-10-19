@@ -1,4 +1,5 @@
 use crate::{Callback, CallbackReturn, Context, FromValue, String, Table, Value};
+use alloc::vec::Vec;
 
 pub fn load_string<'gc>(ctx: Context<'gc>) {
     let string = Table::new(&ctx);
