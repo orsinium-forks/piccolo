@@ -226,14 +226,14 @@ struct InternedDynStringsInner<'gc>(
 #[collect(no_drop)]
 struct InternedDynStrings<'gc>(Gc<'gc, InternedDynStringsInner<'gc>>);
 
-unsafe impl<'gc> Collect for InternedDynStringsInner<'gc> {
-    fn trace(&self, cc: &Collection) {
+unsafe impl<'gc> Collect<'gc> for InternedDynStringsInner<'gc> {
+    fn trace<T: gc_arena::collect::Trace<'gc>>(&self, cc: &mut T) {
         // SAFETY: No new Gc pointers are adopted or reparented.
         let mut dyn_strings = unsafe { self.0.unlock_unchecked() }.borrow_mut();
         unsafe {
             for bucket in dyn_strings.iter() {
                 let s = bucket.as_ref().0;
-                if s.is_dropped(cc) {
+                if s.is_dropped() {
                     // SAFETY: it is okay to erase items yielded by the iterator.
                     dyn_strings.erase(bucket);
                 } else {

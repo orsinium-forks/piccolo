@@ -99,18 +99,18 @@ impl<'gc, M> Clone for Any<'gc, M> {
 impl<'gc, M> Any<'gc, M> {
     pub fn new<R>(mc: &Mutation<'gc>, data: Root<'gc, R>) -> Self
     where
-        M: Collect + Default,
+        M: Collect<'gc> + Default,
         R: for<'a> Rootable<'a> + 'static,
-        Root<'gc, R>: Sized + Collect,
+        Root<'gc, R>: Sized + Collect<'gc>,
     {
         Self::with_metadata::<R>(mc, M::default(), data)
     }
 
     pub fn with_metadata<R>(mc: &Mutation<'gc>, metadata: M, data: Root<'gc, R>) -> Self
     where
-        M: Collect,
+        M: Collect<'gc>,
         R: for<'a> Rootable<'a> + 'static,
-        Root<'gc, R>: Sized + Collect,
+        Root<'gc, R>: Sized + Collect<'gc>,
     {
         let val = Gc::new(
             mc,

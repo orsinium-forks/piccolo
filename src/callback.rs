@@ -67,7 +67,7 @@ pub enum CallbackReturn<'gc> {
 ///
 /// All arguments and returns are handled through the provided `stack`, which avoids allocating
 /// space on the heap for them on each call.
-pub trait CallbackFn<'gc>: Collect {
+pub trait CallbackFn<'gc>: Collect<'gc> {
     fn call(
         &self,
         ctx: Context<'gc>,
@@ -101,15 +101,10 @@ impl<'gc> Callback<'gc> {
 
         // SAFETY: We can't auto-implement `Collect` due to the function pointer lifetimes, but
         // function pointers can't hold any data.
-        unsafe impl<'gc, C: Collect> Collect for HeaderCallback<'gc, C> {
-            fn needs_trace() -> bool
-            where
-                Self: Sized,
-            {
-                C::needs_trace()
-            }
+        unsafe impl<'gc, C: Collect<'gc>> Collect<'gc> for HeaderCallback<'gc, C> {
+            const NEEDS_TRACE: bool = true;
 
-            fn trace(&self, cc: &gc_arena::Collection) {
+            fn trace<T: gc_arena::collect::Trace<'gc>>(&self, cc: &mut T) {
                 self.callback.trace(cc)
             }
         }
@@ -149,7 +144,7 @@ impl<'gc> Callback<'gc> {
     /// Create a callback from a Rust function together with a GC object.
     pub fn from_fn_with<R, F>(mc: &Mutation<'gc>, root: R, call: F) -> Callback<'gc>
     where
-        R: 'gc + Collect,
+        R: 'gc + Collect<'gc>,
         F: 'static
             + Fn(
                 &R,
@@ -168,7 +163,7 @@ impl<'gc> Callback<'gc> {
 
         impl<'gc, R, F> CallbackFn<'gc> for RootCallback<R, F>
         where
-            R: 'gc + Collect,
+            R: 'gc + Collect<'gc>,
             F: 'static
                 + Fn(
                     &R,
@@ -281,7 +276,7 @@ pub enum SequencePoll<'gc> {
 /// [`SequencePoll`] values from [`Sequence::poll`]. Once the triggered action completes, either
 /// [`Sequence::poll`] or [`Sequence::error`] will be called, depending on whether the triggered
 /// action has completed successfully or errored.
-pub trait Sequence<'gc>: Collect {
+pub trait Sequence<'gc>: Collect<'gc> {
     /// Called by the running [`Executor`](crate::Executor) when the `Sequence` is first started
     /// with the arguments to the `Sequence`, and whenever a triggered action completes with the
     /// action's return values.
@@ -316,8 +311,10 @@ pub trait Sequence<'gc>: Collect {
 /// generally owned only by the `Thread` in which it is running.
 pub struct BoxSequence<'gc>(Pin<boxed::Box<dyn Sequence<'gc> + 'gc, MetricsAlloc<'static>>>);
 
-unsafe impl<'gc> Collect for BoxSequence<'gc> {
-    fn trace(&self, cc: &gc_arena::Collection) {
+unsafe impl<'gc> Collect<'gc> for BoxSequence<'gc> {
+    const NEEDS_TRACE: bool = true;
+
+    fn trace<T: gc_arena::collect::Trace<'gc>>(&self, cc: &mut T) {
         // SAFETY: We have to manually implement `Collect` for `BoxSequence<'gc>` because `gc-arena`
         // does not provide `Collect` impls for `Pin<T>`.
         self.0.as_ref().get_ref().trace(cc);

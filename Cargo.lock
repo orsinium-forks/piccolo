@@ -171,18 +171,17 @@ dependencies = [
 [[package]]
 name = "gc-arena"
 version = "0.5.3"
-source = "git+https://github.com/kyren/gc-arena?rev=5a7534b883b703f23cfb8c3cfdf033460aa77ea9#5a7534b883b703f23cfb8c3cfdf033460aa77ea9"
+source = "git+https://github.com/kyren/gc-arena?rev=08e08414249d5914dfc3b402d7eadc133e00ce56#08e08414249d5914dfc3b402d7eadc133e00ce56"
 dependencies = [
  "allocator-api2",
  "gc-arena-derive",
- "hashbrown",
- "sptr",
+ "hashbrown 0.15.5",
 ]
 
 [[package]]
 name = "gc-arena-derive"
 version = "0.5.3"
-source = "git+https://github.com/kyren/gc-arena?rev=5a7534b883b703f23cfb8c3cfdf033460aa77ea9#5a7534b883b703f23cfb8c3cfdf033460aa77ea9"
+source = "git+https://github.com/kyren/gc-arena?rev=08e08414249d5914dfc3b402d7eadc133e00ce56#08e08414249d5914dfc3b402d7eadc133e00ce56"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -208,6 +207,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e5274423e17b7c9fc20b6e7e208532f9b19825d82dfd615708b70edd83df41f1"
 dependencies = [
  "ahash",
+ "allocator-api2",
+]
+
+[[package]]
+name = "hashbrown"
+version = "0.15.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9229cfe53dfd69f0609a49f65461bd93001ea1ef889cd5529dd176593f5338a1"
+dependencies = [
  "allocator-api2",
 ]
 
@@ -286,7 +294,7 @@ dependencies = [
  "anyhow",
  "clap",
  "gc-arena",
- "hashbrown",
+ "hashbrown 0.14.5",
  "rand",
  "rustyline",
  "thiserror",
@@ -438,12 +446,6 @@ name = "smallvec"
 version = "1.13.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3c5e1a9a646d36c3599cd173a41282daf47c44583ad367b8e6837255952e5c67"
-
-[[package]]
-name = "sptr"
-version = "0.3.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3b9b39299b249ad65f3b7e96443bad61c02ca5cd3589f46cb6d610a0fd6c0d6a"
 
 [[package]]
 name = "strsim"
