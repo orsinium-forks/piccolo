@@ -27,6 +27,7 @@ pub fn load_math<'gc>(ctx: Context<'gc>) {
     load_baseline(ctx, math);
     load_cmp(ctx, math);
 
+    #[cfg(feature = "std")]
     load_random(ctx, math);
 
     load_trig(ctx, math);
@@ -288,13 +289,15 @@ pub fn load_trig<'gc>(ctx: Context<'gc>, math: Table<'gc>) {
     math.set_field(ctx, "tan", callback("tan", &ctx, |_, v: f64| Some(v.tan())));
 }
 
+#[cfg(feature = "std")]
 pub fn load_random<'gc>(ctx: Context<'gc>, math: Table<'gc>) {
     use alloc::rc::Rc;
     use core::cell::RefCell;
     use rand::rngs::SmallRng;
     use rand::{Rng, SeedableRng};
 
-    let seeded_rng = Rc::new(RefCell::new(SmallRng::from_entropy()));
+    let seeded_rng = SmallRng::from_entropy();
+    let seeded_rng = Rc::new(RefCell::new(seeded_rng));
 
     let random_rng = Rc::clone(&seeded_rng);
     math.set_field(
