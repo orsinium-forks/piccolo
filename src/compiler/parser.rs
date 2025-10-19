@@ -1,7 +1,11 @@
 use super::lexer::{LexError, Lexer, LineNumber, Token};
 use super::StringInterner;
+use alloc::borrow::ToOwned;
 use alloc::boxed::Box;
+use alloc::format;
 use alloc::rc::Rc;
+use alloc::string::String;
+use alloc::vec;
 use alloc::vec::Vec;
 use core::{fmt, ops};
 use thiserror::Error;

@@ -1,6 +1,8 @@
 use crate::finalizers::Finalizers;
 use crate::stash::{Fetchable, Stashable};
-use crate::stdlib::{load_base, load_coroutine, load_io, load_math, load_string, load_table};
+#[cfg(feature = "std")]
+use crate::stdlib::load_io;
+use crate::stdlib::{load_base, load_coroutine, load_math, load_string, load_table};
 use crate::string::InternedStringSet;
 use crate::thread::BadThreadMode;
 use crate::{

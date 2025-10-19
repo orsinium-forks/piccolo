@@ -1,4 +1,5 @@
 use crate::{Context, FromMultiValue, FromValue, IntoMultiValue, IntoValue, TypeError, Value};
+use alloc::vec::Vec;
 use allocator_api2::vec;
 use core::iter;
 use core::ops::{Bound, Index, IndexMut, RangeBounds};

@@ -6,6 +6,7 @@ use crate::table::RawTable;
 use crate::thread::thread::MetaReturn;
 use crate::types::{RegisterIndex, UpValueDescriptor, VarCount};
 use crate::{Closure, Constant, Context, Function, String, Table, Value};
+use alloc::borrow::ToOwned;
 use allocator_api2::vec;
 use gc_arena::allocator_api::MetricsAlloc;
 

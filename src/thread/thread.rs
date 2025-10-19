@@ -6,6 +6,7 @@ use crate::{
     meta_ops, BoxSequence, Callback, Closure, Context, Error, FromMultiValue, Fuel, Function,
     IntoMultiValue, String, Table, UserData, Value,
 };
+use alloc::format;
 use allocator_api2::vec;
 use core::cell::RefMut;
 use core::hash::{Hash, Hasher};

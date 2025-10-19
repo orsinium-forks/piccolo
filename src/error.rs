@@ -3,6 +3,7 @@ use crate::{
     Table, UserData, Value,
 };
 use alloc::string::String as StdString;
+use alloc::string::ToString;
 use alloc::sync::Arc;
 use core::error::Error as StdError;
 use core::fmt;

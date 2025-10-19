@@ -1,4 +1,5 @@
 use crate::{Callback, Closure, Constant, Function, String, Table, Thread, UserData};
+use alloc::string::ToString;
 use core::{f64, fmt, i64};
 use gc_arena::{Collect, Gc};
 

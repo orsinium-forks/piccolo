@@ -23,6 +23,7 @@ use crate::types::{
 use crate::Constant;
 use alloc::boxed::Box;
 use alloc::collections::VecDeque;
+use alloc::vec;
 use alloc::vec::Vec;
 use core::{fmt, iter, mem};
 use gc_arena::Collect;

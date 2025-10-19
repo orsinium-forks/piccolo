@@ -2,6 +2,7 @@ use crate::{
     async_sequence, meta_ops, Callback, CallbackReturn, Context, FromMultiValue, IntoMultiValue,
     IntoValue, SequenceReturn, Table, Value,
 };
+use alloc::format;
 use gc_arena::Mutation;
 
 fn callback<'gc, F, A, R>(name: &'static str, mc: &Mutation<'gc>, f: F) -> Callback<'gc>
